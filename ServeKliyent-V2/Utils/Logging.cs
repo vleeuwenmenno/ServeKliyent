@@ -47,42 +47,42 @@ namespace ServeKliyent_V2.Utils
             if (level == LogLevel.Info)
             {
                 if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
                 else
                     allowWrite = true;
             }
             else if (level == LogLevel.Warning)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
             else if (level == LogLevel.Error)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
             else if (level == LogLevel.Critical)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
 
             if (allowWrite)
@@ -110,42 +110,42 @@ namespace ServeKliyent_V2.Utils
             if (level == LogLevel.Info)
             {
                 if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
                 else
                     allowWrite = true;
             }
             else if (level == LogLevel.Warning)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
             else if (level == LogLevel.Error)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
             else if (level == LogLevel.Critical)
             {
                 if (outputMode == OutputMode.InfoOnly)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    return;
+                    allowWrite = false;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
-                    return;
+                    allowWrite = false;
             }
 
             if (allowWrite)

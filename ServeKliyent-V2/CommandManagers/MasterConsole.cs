@@ -77,7 +77,9 @@ namespace ServeKliyent_V2.CommandManagers
             }
             else if (commands[0] == "help")
             {
-                throw new NotImplementedException();
+                console.WriteLine("Usage: [command] [parameters] [..] [..] ....\n" +
+                 "                     Commands: exit, clear, help, settings.\n" +
+                 "\nFor detailed usage info type the command without parameters." , LogLevel.Info);
             }
             else if (commands[0] == "clear")
             {
