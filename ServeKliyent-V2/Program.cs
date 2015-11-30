@@ -11,7 +11,7 @@ namespace ServeKliyent_V2
         public static Logging console = new Logging();
         public static bool keepAlive = true;
         public static Manager pluginManager = new Manager();
-
+        public static CommandManagers.Commands commandMan = new CommandManagers.Commands();
 
         static void Main(string[] args)
         {

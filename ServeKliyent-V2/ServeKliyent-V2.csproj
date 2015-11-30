@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandManagers\Command.cs" />
+    <Compile Include="CommandManagers\Commands.cs" />
     <Compile Include="CommandManagers\MasterConsole.cs" />
     <Compile Include="IO\SettingManager.cs" />
     <Compile Include="IO\Settings.cs" />

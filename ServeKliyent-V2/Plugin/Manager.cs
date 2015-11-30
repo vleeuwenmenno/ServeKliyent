@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using ServeKliyent_V2.Utils;
 
 namespace ServeKliyent_V2.Plugin
@@ -28,6 +25,22 @@ namespace ServeKliyent_V2.Plugin
             {
                 Plugin plg = new Plugin();
                 plg.assembly = Assembly.LoadFile(file.FullName);
+
+                plg.types = plg.assembly.GetExportedTypes();
+
+                int mainType = 0;
+
+                foreach (Type t in plg.types)
+                {
+                    if (plg.types[mainType].Name == "Plugin")
+                        break;
+
+                    mainType++;
+                }
+
+                plg.methods = plg.types[mainType].GetMethods();
+
+                plg.Execute("Start");
 
                 loadedPlugins.Add(plg);
                 loadCount++;

@@ -13,7 +13,8 @@ namespace ServeKliyent_V2.Utils
         Info = 0,
         Warning = 1,
         Error = 2,
-        Critical = 3
+        Critical = 3,
+        Debug = 4
     }
 
     public enum OutputMode
@@ -67,13 +68,24 @@ namespace ServeKliyent_V2.Utils
                 if (outputMode == OutputMode.InfoOnly)
                     allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    allowWrite = false;
+                    allowWrite = true;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
                     allowWrite = false;
             }
             else if (level == LogLevel.Critical)
+            {
+                if (outputMode == OutputMode.InfoOnly)
+                    allowWrite = false;
+                else if (outputMode == OutputMode.Essential)
+                    allowWrite = true;
+                else if (outputMode == OutputMode.Verbose)
+                    allowWrite = true;
+                else if (outputMode == OutputMode.Mute)
+                    allowWrite = false;
+            }
+            else if (level == LogLevel.Debug)
             {
                 if (outputMode == OutputMode.InfoOnly)
                     allowWrite = false;
@@ -88,7 +100,7 @@ namespace ServeKliyent_V2.Utils
             if (allowWrite)
             {
                 if (timeStamp)
-                    Console.Write("[{0:hh:mm:ss}-" + level.ToString() + "] : " + message, time);
+                    Console.Write("[{0:hh:mm:ss}] [" + level.ToString() + "] : " + message, time);
                 else
                     Console.Write(message);
             }
@@ -96,13 +108,13 @@ namespace ServeKliyent_V2.Utils
             if (IsLogging)
             {
                 if (timeStamp)
-                    currentLog += "[" + time.ToString("hh:mm:ss") + "-" + level.ToString() + "] : " + message;
+                    currentLog += "[" + time.ToString("hh:mm:ss") + "] [" + level.ToString() + "] : " + message;
                 else
                     currentLog += message;
             }
         }
 
-        public void WriteLine(string message, LogLevel level, bool timeStamp = true)
+        public void WriteLine(string message, LogLevel level, bool timeStamp = true, string plugin = "")
         {
             DateTime time = DateTime.Now;
             bool allowWrite = false;
@@ -130,13 +142,24 @@ namespace ServeKliyent_V2.Utils
                 if (outputMode == OutputMode.InfoOnly)
                     allowWrite = false;
                 else if (outputMode == OutputMode.Essential)
-                    allowWrite = false;
+                    allowWrite = true;
                 else if (outputMode == OutputMode.Verbose)
                     allowWrite = true;
                 else if (outputMode == OutputMode.Mute)
                     allowWrite = false;
             }
             else if (level == LogLevel.Critical)
+            {
+                if (outputMode == OutputMode.InfoOnly)
+                    allowWrite = false;
+                else if (outputMode == OutputMode.Essential)
+                    allowWrite = true;
+                else if (outputMode == OutputMode.Verbose)
+                    allowWrite = true;
+                else if (outputMode == OutputMode.Mute)
+                    allowWrite = false;
+            }
+            else if (level == LogLevel.Debug)
             {
                 if (outputMode == OutputMode.InfoOnly)
                     allowWrite = false;
@@ -151,7 +174,12 @@ namespace ServeKliyent_V2.Utils
             if (allowWrite)
             {
                 if (timeStamp)
-                    Console.Write("[{0:hh:mm:ss}-" + level.ToString() + "] : " + message + "\n", time);
+                    if (plugin != "")
+                    {
+                        Console.Write("[{0:hh:mm:ss}] [" + level.ToString() + "] ["  + plugin + "] : " + message + "\n", time);
+                    }
+                    else
+                        Console.Write("[{0:hh:mm:ss}] [" + level.ToString() + "] : " + message + "\n", time);
                 else
                     Console.Write(message + "\n");
             }
@@ -159,7 +187,12 @@ namespace ServeKliyent_V2.Utils
             if (IsLogging)
             {
                 if (timeStamp)
-                    currentLog += "[" + time.ToString("hh:mm:ss") + "-" + level.ToString() + "] : " + message + "\n";
+                    if (plugin != "")
+                    {
+                        currentLog += "[" + time.ToString("hh:mm:ss") + "] [" + level.ToString() + "] [" + plugin + "] : " + message + "\n";
+                    }
+                    else
+                        currentLog += "[" + time.ToString("hh:mm:ss") + "] [" + level.ToString() + "] [" + plugin + "] : " + message + "\n";
                 else
                     currentLog += message + "\n";
             }

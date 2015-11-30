@@ -1,16 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ServeKliyent_V2.Utils;
+using ServeKliyent_V2.CommandManagers;
 
-namespace TestPlugin
+namespace PlusCommands
 {
-    public class Class1
+    public class Plugin : ServeKliyent_V2.Plugin.Plugin
     {
-        public void Test()
+        public string pluginName = "PlusCommands";
+        public Logging log;
+        public Commands commandMan;
+        
+        public void Start()
         {
-            Console.WriteLine("Test");
+            log = ServeKliyent_V2.Program.console; //Get te console for logging.
+            commandMan = ServeKliyent_V2.Program.commandMan;
+
+            //Register commands
+            Command cmd = new Command(this, pluginName);
+
+            cmd.command = "plus";
+            cmd.method = "PlusExecute";
+            cmd.usage = "Display 1 + 1 :P";
+
+            commandMan.RegisterCommand(cmd);
+
+            log.WriteLine("Plugin has been loaded!", LogLevel.Info, true, pluginName);
+        }
+
+        public void PlusExecute()
+        {
+
         }
     }
 }

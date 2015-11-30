@@ -13,7 +13,7 @@ namespace ServeKliyent_V2.IO
         public Settings settings { get; set; }
 
         [Obsolete]
-        private static void SaveDataOld(Settings data, string filePath) //TODO: Make this XML or JSON
+        private static void SaveDataOld(Settings data, string filePath)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -22,7 +22,7 @@ namespace ServeKliyent_V2.IO
         }
 
         [Obsolete]
-        private static Settings LoadDataOld(string filePath) //TODO: Make this XML or JSON
+        private static Settings LoadDataOld(string filePath)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -32,7 +32,7 @@ namespace ServeKliyent_V2.IO
             return obj;
         }
 
-        private static void SaveData(Settings data, string filePath) //TODO: Make this XML or JSON
+        private static void SaveData(Settings data, string filePath)
         {
             var serializer = new XmlSerializer(data.GetType());
             using (var writer = XmlWriter.Create(filePath))
@@ -41,7 +41,7 @@ namespace ServeKliyent_V2.IO
             }
         }
 
-        private static Settings LoadData(string filePath) //TODO: Make this XML or JSON
+        private static Settings LoadData(string filePath)
         {
             Settings obj = new Settings();
             var serializer = new XmlSerializer(typeof(Settings));

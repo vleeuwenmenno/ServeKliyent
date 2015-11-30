@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServeKliyent-V2", "ServeKliyent-V2\ServeKliyent-V2.csproj", "{E34250C2-D5A9-4286-A13D-B357B3382144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "TestPlugin\TestPlugin.csproj", "{819F5CAE-9769-4197-B088-02D695BA41A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlusCommands", "TestPlugin\PlusCommands.csproj", "{819F5CAE-9769-4197-B088-02D695BA41A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
