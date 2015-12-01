@@ -12,8 +12,11 @@ namespace ServeKliyent_V2.IO
     {
         public OutputMode outputMode { get; set; }
 
+        public LoggingMode loggingMode { get; set; }
+
         public void Populate()
         {
+            Program.console.loggingMode = loggingMode;
             Program.console.outputMode = outputMode;
         }
     }

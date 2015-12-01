@@ -8,13 +8,13 @@
 
         public string usage { get; set; }
 
-        public Plugin.Plugin parent { get; }
+        public Plugin.Plugin parent { get; set; }
 
         public string parentName { get; }
 
-        public Command(Plugin.Plugin parent, string parentName)
+        public Command(Plugin.Plugin plug, string parentName)
         {
-            this.parent = parent;
+            this.parent = plug;
             this.parentName = parentName;
         }
     }
