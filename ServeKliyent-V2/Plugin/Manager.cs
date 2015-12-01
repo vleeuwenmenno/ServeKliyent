@@ -68,6 +68,10 @@ namespace ServeKliyent_V2.Plugin
 
                 for (int i = 0; i < loadedPlugins.Count; i++)
                 {
+                    for (int ii = 0; ii < Program.commandMan.commandsRegistered.Count; ii++)
+                        if (Program.commandMan.commandsRegistered[ii].parent == loadedPlugins[i])
+                            Program.commandMan.commandsRegistered.RemoveAt(ii);
+
                     loadedPlugins[i].Execute("Stop");
                     loadedPlugins.RemoveAt(i);
                 }

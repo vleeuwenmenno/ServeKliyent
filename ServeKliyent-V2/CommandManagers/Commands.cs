@@ -125,16 +125,16 @@ namespace ServeKliyent_V2.CommandManagers
                         }
                         else if (commands[1] == "status")
                         {
-                            Program.console.Write("Loaded plugins: ", LogLevel.Info);
+                            Program.console.WriteLine("Loaded plugins: ", LogLevel.Info);
 
                             int count = 0;
                             foreach (Plugin.Plugin plg in Program.pluginManager.loadedPlugins)
                             {
                                 count++;
-                                Program.console.Write(plg.pluginName, LogLevel.Info);
+                                Program.console.Write(plg.pluginName, LogLevel.Info, true);
                             }
 
-                            Program.console.Write("\nTotal amount of plugins loaded: " + count + "\n", LogLevel.Info);
+                            Program.console.Write("Total amount of plugins loaded: " + count, LogLevel.Info, true);
                         }
                         else
                         {
