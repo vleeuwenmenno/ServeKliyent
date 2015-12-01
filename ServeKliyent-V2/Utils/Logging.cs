@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -44,11 +45,97 @@ namespace ServeKliyent_V2.Utils
         public string currentLog = "";
         public Timer logSaver = new Timer(1000);
 
-        public string ReadLine()
+        public string ReadLine(List<Suggest> suggestions = null)
         {
-            string returnVal = Console.ReadLine();
-            currentLog += returnVal + "\n";
+            bool notEnter = true;
+            string returnVal = "";
 
+            int cursorpos = 0;
+            int startPos = Console.CursorLeft;
+
+            int currentSug = -1;
+
+            while (notEnter)
+            {
+                ConsoleKeyInfo info = Console.ReadKey();
+
+                if (info.Key == ConsoleKey.Enter)
+                    notEnter = false;
+                else if (info.Key == ConsoleKey.LeftArrow || info.Key == ConsoleKey.RightArrow || info.Key == ConsoleKey.UpArrow || info.Key == ConsoleKey.DownArrow)
+                    Console.CursorLeft -= 1;
+                else if (info.Key == ConsoleKey.Backspace && Console.CursorLeft >= startPos && cursorpos > 0)
+                {
+                    cursorpos--;
+
+                    Console.Write(" ");
+
+                    returnVal = returnVal.Substring(0, returnVal.Length - 1);
+
+                    Console.CursorLeft--;
+                    currentSug = -1;
+                }
+                else if (info.Key == ConsoleKey.Backspace && Console.CursorLeft <= startPos)
+                {
+                    Console.CursorLeft++;
+                    currentSug = -1;
+                }
+                else if (info.Key == ConsoleKey.Tab)
+                {
+                    Console.CursorLeft = startPos + returnVal.Length;
+
+                    if (suggestions != null)
+                    {
+                        List<string> commands = Regex.Matches(returnVal, @"[\""].+?[\""]|[^ ]+")
+                            .Cast<Match>()
+                            .Select(m => m.Value)
+                            .ToList();
+
+                        if (commands.Count > 0)
+                        {
+                            foreach (Suggest sug in suggestions)
+                            {
+                                if (commands[0] == sug.command)
+                                {
+                                    if (currentSug == -1)
+                                    {
+                                        currentSug++;
+
+                                        if (!commands[0].EndsWith(" "))
+                                        {
+                                            Console.Write(" ");
+                                            returnVal += " ";
+                                        }
+
+                                        Console.Write(sug.toSuggest[currentSug]);
+                                        returnVal += sug.toSuggest[currentSug];
+                                    }
+                                    else 
+                                    {
+                                        currentSug++;
+
+                                        Console.CursorLeft -= sug.toSuggest[currentSug - 1].Length;
+                                        returnVal = returnVal.Substring(0, sug.toSuggest[currentSug - 1].Length);
+
+                                        Console.Write(sug.toSuggest[currentSug]);
+                                        returnVal += sug.toSuggest[currentSug];
+
+                                        if (currentSug == sug.toSuggest.Length)
+                                            currentSug = -1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (info.KeyChar == '\0') { }
+                else
+                {
+                    returnVal += info.KeyChar;
+                    cursorpos++;
+                }
+            }
+
+            currentLog += returnVal + "\n";
             return returnVal;
         }
 

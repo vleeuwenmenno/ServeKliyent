@@ -11,14 +11,14 @@ namespace PlusCommands
             //Initalize the plugin at the pluginManager
             Init(Guid.NewGuid());
             pluginName = "PlusCommands";
-
+            
             //Register commands
             Command cmd = new Command(this, pluginName);
 
             //Define the command info
             cmd.command = "plus";
             cmd.method = "PlusExecute";
-            cmd.usage = "Display 1 + 1 :P";
+            cmd.usage = "Get data from its parent and show it.";
 
             //Finally register the command in the commandManager
             commandMan.RegisterCommand(cmd);
@@ -37,8 +37,8 @@ namespace PlusCommands
         public void PlusExecute()
         {
             //The method of plus command.
-            this.Init(Guid.NewGuid());
-            log.WriteLine("1 + 1 = 2", LogLevel.Info);
+            log.WriteLine("outputMode: " + ServeKliyent_V2.Program.settings.settings.outputMode.ToString(), LogLevel.Info);
+            log.WriteLine("loggingMode: " + ServeKliyent_V2.Program.settings.settings.loggingMode.ToString(), LogLevel.Info);
         }
     }
 }

@@ -152,13 +152,12 @@ namespace ServeKliyent_V2.CommandManagers
                 }
                 else if (commands[0] == "help")
                 {
-                    Program.console.WriteLine("Usage: [command] [parameters] [..] [..] ....\n" +
-                        "                     Internal Commands:\n" +
+                    Program.console.WriteLine("Internal Commands:\n" +
                         "                     exit - Save and exit the server.\n" +
                         "                     clear - Clear the console screen.\n" +
                         "                     help - Show this help screen.\n" +
                         "                     settings - Change the server settings\n" + 
-                        "                     plugins - Manage plugins.", LogLevel.Info);
+                        "                     plugins - Manage plugins.\n", LogLevel.Info);
 
                     string helpString = "";
 
@@ -167,8 +166,7 @@ namespace ServeKliyent_V2.CommandManagers
                         helpString += "                     " + cmd.command + " - " + cmd.usage + "\n";
                     }
 
-                    Program.console.WriteLine("External Commands:\n" + helpString +
-                        "\n                     For more usage info type help [command] //TODO", LogLevel.Info); //TODO: Make a help [command] system!
+                    Program.console.WriteLine("External Commands:\n" + helpString, LogLevel.Info);
                 }
                 else if (commands[0] == "clear")
                 {

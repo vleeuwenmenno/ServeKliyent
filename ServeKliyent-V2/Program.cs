@@ -2,6 +2,7 @@
 using ServeKliyent_V2.Utils;
 using ServeKliyent_V2.IO;
 using ServeKliyent_V2.Plugin;
+using System.Collections.Generic;
 
 namespace ServeKliyent_V2
 {
@@ -28,7 +29,13 @@ namespace ServeKliyent_V2
             while (keepAlive)
             {
                 console.Write("master#console:~$ ", LogLevel.Info, false);
-                string command = console.ReadLine();
+
+                List<Suggest> suggestions = new List<Suggest>();
+
+                Suggest s = new Suggest("settings", new string[] { "get", "set", "delete" });
+                suggestions.Add(s);
+
+                string command = console.ReadLine(suggestions);
 
                 CommandManagers.MasterConsole.HandleCommand(command, console);
             }
