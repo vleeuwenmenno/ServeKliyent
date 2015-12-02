@@ -191,7 +191,7 @@ namespace ServeKliyent_V2.CommandManagers
                         if (c.command == commands[0])
                         {
                             Program.console.WriteLine("Plugin command from '" + c.parent.pluginName + "' - '" + c.method + "'.", LogLevel.Debug);
-                            c.parent.Execute(c.method);
+                            c.parent.Execute(c.method, commands);
                             found = true;
                         }
                     }

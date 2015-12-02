@@ -1,6 +1,7 @@
 ﻿using ServeKliyent_V2.CommandManagers;
 using ServeKliyent_V2.Utils;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace ServeKliyent_V2.Plugin
@@ -43,7 +44,7 @@ namespace ServeKliyent_V2.Plugin
 
             log = Program.console;
             commandMan = Program.commandMan;
-
+            
             this.pluginId = pluginId.ToString();
         }
 
@@ -52,7 +53,7 @@ namespace ServeKliyent_V2.Plugin
         /// </summary>
         /// <param name="method">The method you want to execute</param>
         /// <param name="Class">From which class this method is child to. When left empty it will search the first upcoming method called method of type string</param>
-        public object Execute(string method, int Class = -1)
+        public object Execute(string method, List<string> args = null, int Class = -1)
         {
             try
             {
@@ -72,7 +73,11 @@ namespace ServeKliyent_V2.Plugin
                         else
                             break;
 
-                        object i = Activator.CreateInstance(types[Class]);
+                        object i = null;
+                        if (types[Class].Name == "Plugin")
+                            i = Activator.CreateInstance(types[Class]);
+                        else
+                            Class++;
 
                         int sM = 0;
                         bool f = false;
@@ -96,7 +101,13 @@ namespace ServeKliyent_V2.Plugin
                 object instance = null;
 
                 if (pluginInstance == null)
-                    instance = Activator.CreateInstance(types[Class]);
+                {
+                    if (types[Class].Name == "Plugin")
+                        instance = Activator.CreateInstance(types[Class]);
+                    else
+                        Class++;
+
+                }
                 else
                     instance = pluginInstance;
 
@@ -116,8 +127,25 @@ namespace ServeKliyent_V2.Plugin
 
                 if (found && classOk)
                 {
-                    object returnVal = methods[startMethod].Invoke(instance, null);
-                    return returnVal;
+                    try
+                    {
+                        if (args != null)
+                        {
+                            object returnVal = methods[startMethod].Invoke(instance, new object[] { args.ToArray() });
+                            return returnVal;
+                        }
+                        else
+                        {
+                            object returnVal = methods[startMethod].Invoke(instance, null);
+                            return returnVal;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.console.WriteLine("Command failed to execute. Retrying without parameters... (Are you missing string[] argument?)", LogLevel.Debug);
+                        object returnVal = methods[startMethod].Invoke(instance, null);
+                        return returnVal;
+                    }
                 }
                 else if (!classOk)
                 {

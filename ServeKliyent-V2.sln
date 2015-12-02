@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServeKliyent-V2", "ServeKli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlusCommands", "TestPlugin\PlusCommands.csproj", "{819F5CAE-9769-4197-B088-02D695BA41A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterControl", "MasterControl\MasterControl.csproj", "{0D01F974-064F-4F31-9BAA-F6E00428E2E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterServer-Client", "MasterServer-Client\MasterServer-Client.csproj", "{26A61781-8AA6-4953-B7B9-3056967FCE57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{819F5CAE-9769-4197-B088-02D695BA41A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{819F5CAE-9769-4197-B088-02D695BA41A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{819F5CAE-9769-4197-B088-02D695BA41A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D01F974-064F-4F31-9BAA-F6E00428E2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D01F974-064F-4F31-9BAA-F6E00428E2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D01F974-064F-4F31-9BAA-F6E00428E2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D01F974-064F-4F31-9BAA-F6E00428E2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A61781-8AA6-4953-B7B9-3056967FCE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A61781-8AA6-4953-B7B9-3056967FCE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A61781-8AA6-4953-B7B9-3056967FCE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A61781-8AA6-4953-B7B9-3056967FCE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

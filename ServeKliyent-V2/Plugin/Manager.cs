@@ -43,14 +43,19 @@ namespace ServeKliyent_V2.Plugin
 
                     plg.methods = plg.types[mainType].GetMethods();
 
-                    //Let the plugin init herself.
-                    plg = (Plugin)plg.Execute("Start");
+                    //Let the plugin init.
+                    try
+                    {
+                        plg = (Plugin)plg.Execute("Start");
+                    }
+                    catch (Exception ex) { }
 
                     if (plg == null)
                         Program.console.WriteLine("Failed to load plugin '" + file.Name + "'. Is it missing Start()?", LogLevel.Error);
                     else
                     {
                         plg.pluginInstance = plg;
+
                         loadedPlugins.Add(plg);
 
                         loadCount++;
