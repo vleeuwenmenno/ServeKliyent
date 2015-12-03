@@ -229,6 +229,36 @@ namespace ServeKliyent_V2.CommandManagers
             }
         }
 
+        public void RegisterCommand(List<Command> cmds)
+        {
+            foreach (Command cmd in cmds)
+            {
+                //Check for command duplicates
+                bool dupe = false;
+
+                foreach (Command cm in commandsRegistered)
+                {
+                    if (cm.command == cmd.command)
+                        dupe = true;
+                }
+
+                //Search for the plugin who requested the register.
+                foreach (Plugin.Plugin plg in Program.pluginManager.loadedPlugins)
+                    if (plg.pluginId == cmd.parent.pluginId)
+                        cmd.parent = plg;
+
+                if (!dupe)
+                {
+                    commandsRegistered.Add(cmd);
+                    Program.console.WriteLine("Command '" + cmd.command + "' successfully registered.", LogLevel.Debug, true, cmd.parentName);
+                }
+                else
+                {
+                    Program.console.WriteLine("Failed to register command '" + cmd.command + "' command string already in use!", LogLevel.Error, true, cmd.parentName);
+                }
+            }
+        }
+
         public void UnregisterCommand(Command cmd)
         {
             bool exist = false;
